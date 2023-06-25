@@ -1,0 +1,8 @@
+# Ignore credential folder
+/credential/
+
+# Ignore lora folder
+/lora/
+
+# Ignore .vscode folder
+/.vscode/

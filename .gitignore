@@ -6,3 +6,9 @@
 
 # Ignore .vscode folder
 /.vscode/
+
+# Ignore note
+note.md
+
+# Ignore configuration
+/database/config.py

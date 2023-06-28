@@ -1,2 +1,5 @@
 paho-mqtt==1.5.1
 google-cloud-pubsub==3.8.0
+chirpstack-api
+pymongo
+firebase-admin

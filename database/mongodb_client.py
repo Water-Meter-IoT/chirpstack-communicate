@@ -22,14 +22,7 @@ mongo_db = mongo_client[mongodb_database]
 mongo_collection = mongo_db[mongodb_collection]
 
 
-# def process_data(data):
-#     parsed_data = json.loads(data)
-#     print("Parsed data:")
-#     for key, value in parsed_data.items():
-#         print(f"{key}: {value}")
 
-#     # Simpan data yang diuraikan ke MongoDB
-#     mongo_collection.insert_one(parsed_data)
 def process_data(data):
     parsed_data = json.loads(data)
     # print("Parsed data:")

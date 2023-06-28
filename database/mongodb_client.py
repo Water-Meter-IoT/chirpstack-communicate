@@ -53,6 +53,7 @@ def process_data(data):
 
     # Simpan data yang diuraikan ke MongoDB
     mongo_collection.insert_one(filtered_data)
+    print(f"Data saved to '{mongodb_database}' on '{mongodb_collection}' collection!")
 
 
 

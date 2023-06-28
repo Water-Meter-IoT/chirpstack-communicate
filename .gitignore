@@ -2,7 +2,7 @@
 /credential/
 
 # Ignore lora folder
-/lora/
+/myenv/
 
 # Ignore .vscode folder
 /.vscode/

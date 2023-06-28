@@ -21,7 +21,7 @@ def send_mqtt_message(topic, payload):
 application_id = '2c31b8a7-c77d-4bd1-b9ff-d612198d0ccb'
 dev_eui = '06634f93b876a32b'
 f_port = 1
-payload_data = 'SGVsbG8gTG9yYQ=='  # Contoh: 'Hello Lora' dalam base64 encoded
+payload_data = 'TWF0aWthbiBMRUQK'  # Contoh: 'Hello Lora' dalam base64 encoded
 object_data = {
     "temperatureSensor": {"1": 25},
     "humiditySensor": {"1": 32}

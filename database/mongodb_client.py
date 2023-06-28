@@ -4,13 +4,13 @@ import config
 import json
 import os
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "../credential/rd-iot-water-meter-94aabd3d232c.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "credential/rd-iot-water-meter-94aabd3d232c.json"
 
 project_id = "rd-iot-water-meter"
-subscription_name = "lorawan-data-sub"
+subscription_name = "chirpstack_integration-sub"
 mongodb_uri = config.mongo_url
-mongodb_database = "pubsub"
-mongodb_collection = "chirpstack"
+mongodb_database = "chirpstack_db"
+mongodb_collection = "pubsub_data1"
 
 # Inisialisasi subscriber
 subscriber = pubsub_v1.SubscriberClient()
@@ -22,14 +22,38 @@ mongo_db = mongo_client[mongodb_database]
 mongo_collection = mongo_db[mongodb_collection]
 
 
+# def process_data(data):
+#     parsed_data = json.loads(data)
+#     print("Parsed data:")
+#     for key, value in parsed_data.items():
+#         print(f"{key}: {value}")
+
+#     # Simpan data yang diuraikan ke MongoDB
+#     mongo_collection.insert_one(parsed_data)
 def process_data(data):
     parsed_data = json.loads(data)
-    print("Parsed data:")
-    for key, value in parsed_data.items():
+    # print("Parsed data:")
+    # for key, value in parsed_data.items():
+    #     print(f"{key}: {value}")
+
+    # Filter data yang diperlukan
+    filtered_data = {
+        "time": parsed_data.get("time"),
+        "deviceInfo": {
+            "applicationId": parsed_data.get("deviceInfo", {}).get("applicationId"),
+            "devEui": parsed_data.get("deviceInfo", {}).get("devEui")
+        },
+        "data": parsed_data.get("data"),
+        "object": parsed_data.get("object")
+    }
+
+    print("Filtered data:")
+    for key, value in filtered_data.items():
         print(f"{key}: {value}")
 
     # Simpan data yang diuraikan ke MongoDB
-    mongo_collection.insert_one(parsed_data)
+    mongo_collection.insert_one(filtered_data)
+
 
 
 def callback(message):

@@ -13,8 +13,8 @@ firebase_admin.initialize_app(cred)
 
 project_id = "rd-iot-water-meter"
 subscription_name = "chirpstack_integration-sub"
-mongodb_database = "pubsub"
-mongodb_collection = "chirpstack"
+# mongodb_database = "pubsub"
+# mongodb_collection = "chirpstack"
 
 db = firestore.client()
 
@@ -23,14 +23,14 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_path = subscriber.subscription_path(project_id, subscription_name)
 
 
-
 def process_data(data):
     parsed_data = json.loads(data)
     # print("Parsed data:")
     # for key, value in parsed_data.items():
     #     print(f"{key}: {value}")
 
-    dev_eui = parsed_data.get("deviceInfo", {}).get("devEui")  # Mengambil nilai devEui dari parsed_data
+    dev_eui = parsed_data.get("deviceInfo", {}).get(
+        "devEui")  # Mengambil nilai devEui dari parsed_data
     if dev_eui:
         # Filter data yang diperlukan
         filtered_data = {

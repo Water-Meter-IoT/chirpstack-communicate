@@ -28,7 +28,7 @@ def send_relay_on():
     dev_eui = entry_dev_eui.get()
     topic = topic_template.format(dev_eui=dev_eui)
 
-    message = "Mesin Air Menyala"
+    message = "1"  # Mengirimkan data "1" untuk menyalakan relay
     payload = '{{"devEui": "{dev_eui}", "confirmed": true, "fPort": 1, "data": "{data}"}}'.format(dev_eui=dev_eui, data=base64.b64encode(message.encode()).decode())
     send_mqtt_message(topic, payload)
 
@@ -37,9 +37,10 @@ def send_relay_off():
     dev_eui = entry_dev_eui.get()
     topic = topic_template.format(dev_eui=dev_eui)
 
-    message = "Mesin Air Mati"
+    message = "0"  # Mengirimkan data "0" untuk mematikan relay
     payload = '{{"devEui": "{dev_eui}", "confirmed": true, "fPort": 1, "data": "{data}"}}'.format(dev_eui=dev_eui, data=base64.b64encode(message.encode()).decode())
     send_mqtt_message(topic, payload)
+
 
 # Membuat GUI dengan Tkinter
 root = tk.Tk()
